@@ -1,14 +1,10 @@
-const http = require('http');
+var http = require('http');
 
+http.createServer(function (req, res) {
+    res.setHeader('Access-Control-Allow-Origin', '*')
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST')
+    res.setHeader('Access-Control-Allow-Headers', 'Contect-Type')
 
-const server = http.createServer(function(req, res){
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST');
-    res.setHeader('Access-Control-Allow-Header', 'Content-Type');
-    
-    res.writeHead(200, {'Content-Type' : 'text/json' });
-    res.write('{"contactSubject": ["General Enqury","Class","Schedule","Instructor","Price","Location","Other"]}')
-    res.end();
-});
-
-server.listen(4040);
+  res.writeHead(200, {'Content-Type': 'application/json'});
+  res.end('{"contactSubject" : ["General Enquery", "Classes", "Schedules", "Instructer", "Prices", "Other", "Anut"]}');
+}).listen(5000);
