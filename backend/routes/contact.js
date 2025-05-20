@@ -45,16 +45,26 @@ switch(action){
         });
         break;
 
-    case 'deletelast':
+    case 'last':
         ///
-        var sql = "DELETE FORM contact WHERE id = (SELECT max(id) FROM contact)";
+        var sql = "SELECT * FORM contact WHERE id = (SELECT max(id) FROM contact)";
+        var sql = "SELECT * FORM contact WHERE id = (SELECT max(id) FROM contact)";
         db.all(sql, [], (err, rows) => {
             if(err){
                 return res.status(500).json({error: 'Fail to fetch contacts from DB!!!'})
             }
             res.json(rows);
         });
-         res.status(200).json({message : 'Last contact deleted!!'})
+        break;
+    case 'deletelast':
+        ///
+        var sql = "DELETE * FORM contact WHERE id = (SELECT max(id) FROM contact)";
+        db.all(sql, [], (err, rows) => {
+            if(err){
+                return res.status(500).json({error: 'Fail to fetch contacts from DB!!!'})
+            }
+            res.json({message : 'Last contact deleted!!'});
+        });
         break;
 
     default:
