@@ -25,7 +25,7 @@ router.post('/',(req,res) =>{
         [fname,lname,email,subject,message]);
 
     console.log('content form submited',{fname,lname,email,subject,message});
-    res.status(200).json({status:"Contact saved in database!!"})
+    res.status(200).json({status:"Contact saved in database!!"})   
 
 });
 
@@ -45,16 +45,16 @@ switch(action){
         });
         break;
 
-    case 'last':
+    case 'deletelast':
         ///
-        var sql = "SELECT * FORM contact WHERE id = (SELECT max(id) FROM contact)";
+        var sql = "DELETE FORM contact WHERE id = (SELECT max(id) FROM contact)";
         db.all(sql, [], (err, rows) => {
             if(err){
                 return res.status(500).json({error: 'Fail to fetch contacts from DB!!!'})
             }
             res.json(rows);
         });
-        // res.status(200).json({message : 'Last'})
+         res.status(200).json({message : 'Last contact deleted!!'})
         break;
 
     default:
